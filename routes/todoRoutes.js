@@ -34,7 +34,20 @@ router.post('/', async (req, res) => {
 })
 
 // post multiple  todo 
-router.get('/all', async (req, res) => {
+router.post('/all', async (req, res) => {
+
+    await Todo.insertMany(req.body, (err) => {
+        if (err) {
+            res.status(500).json({
+                message: "500 server side error"
+            })
+
+        } else {
+            res.status(200).json({
+                message: "Todo's Array Was Inserted successfully"
+            })
+        }
+    })
 
 })
 
