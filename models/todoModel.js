@@ -11,7 +11,7 @@ const todoModel = mongoose.Schema({
 
     status: {
         type: String,
-        numb: ['active', 'inactive']
+        enum: ['active', 'inactive']
     },
     date: {
         type: Date,
