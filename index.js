@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const { config } = require('./config/config');
 const todoHandler = require('./routes/todoRoutes');
 
 
@@ -12,13 +13,7 @@ const PORT = 5000;
 
 // database connection with mongoose
 
-mongoose
-    .connect(`mongodb://127.0.0.1:27017/todos`, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(console.log("Data Base Connected Successfully"))
-    .catch(err => console.log(err))
+config();
 
 
 // 

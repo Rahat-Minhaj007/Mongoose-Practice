@@ -5,34 +5,37 @@ const Todo = new mongoose.model('Todo', todoModel);
 
 exports.singleTodoPost = async (req, res) => {
 
-    const newTodo = new Todo(req.body);
-    await newTodo.save((err, data) => {
-        if (err) {
-            res.status(500).json({
-                message: "500 server side error"
-            })
-        } else {
+    try {
+        const newTodo = new Todo(req.body);
+        const data = await newTodo.save();
+        if (data) {
             res.status(200).json({
                 message: "Todo Was Inserted successfully"
             })
         }
-    });
+    } catch (err) {
+        res.status(500).json({
+            message: "500 server side error"
+        })
+    }
+
+
 }
 
 exports.allTodoPost = async (req, res) => {
-
-    await Todo.insertMany(req.body, (err) => {
-        if (err) {
-            res.status(500).json({
-                message: "500 server side error"
-            })
-
-        } else {
+    try {
+        const data = await Todo.insertMany(req.body);
+        if (data) {
             res.status(200).json({
-                message: "Todo's Array Was Inserted successfully"
+                message: "Todos Was Inserted successfully"
             })
+
         }
-    })
+    } catch (err) {
+        res.status(500).json({
+            message: "500 server side error"
+        })
+    }
 
 }
 
@@ -90,47 +93,49 @@ exports.getSingleTodo = async (req, res) => {
 
 
 exports.updateSingleTodo = async (req, res) => {
-    await Todo.findByIdAndUpdate(
-        { _id: req.params.id },
-        {
-            $set: {
-                status: req.body.status
+    try {
+        const data = await Todo.findByIdAndUpdate(
+            { _id: req.params.id },
+            {
+                $set: {
+                    status: req.body.status
+                },
             },
-        },
-        {
-            useFindAndModify: false,
-            new: true
-        },
-        (err) => {
-            if (err) {
-                res.status(500).json({
-                    message: "500 server side error"
-                })
+            {
+                useFindAndModify: false,
+                new: true
+            })
 
-            } else {
-                res.status(200).json({
-                    message: "Todo Was updated successfully"
-                })
-            }
+        if (data) {
+            res.status(200).json({
+                message: "Todo Was updated successfully",
+                result: data
+            })
+        }
+    } catch (err) {
+        res.status(500).json({
+            message: "500 server side error"
         })
+
+    }
 }
 
 
 exports.deleteSingleTodo = async (req, res) => {
-    await Todo.deleteOne({ _id: req.params.id }, (err, data) => {
-        if (err) {
-            res.status(500).json({
-                message: "500 server side error"
-            })
-
-        } else {
+    try {
+        const data = await Todo.deleteOne({ _id: req.params.id });
+        if (data) {
             res.status(200).json({
 
                 message: "Todo Was Deleted successfully"
             })
         }
 
-    })
+    } catch (err) {
+        res.status(500).json({
+            message: "500 server side error"
+        })
+    }
 
 }
 
