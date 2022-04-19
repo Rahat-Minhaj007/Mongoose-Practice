@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const todoModel = require('../models/todoModel');
-
 const Todo = new mongoose.model('Todo', todoModel);
 
+// Post Single Todo
 exports.singleTodoPost = async (req, res) => {
 
     try {
@@ -22,6 +22,7 @@ exports.singleTodoPost = async (req, res) => {
 
 }
 
+// Post Multiple Todo
 exports.allTodoPost = async (req, res) => {
     try {
         const data = await Todo.insertMany(req.body);
@@ -39,6 +40,7 @@ exports.allTodoPost = async (req, res) => {
 
 }
 
+// get all todo 
 exports.getAllTodo = (req, res) => {
     Todo.find({ status: 'active' }, (err, data) => {
         if (err) {
@@ -57,6 +59,7 @@ exports.getAllTodo = (req, res) => {
 
 }
 
+// get single todo 
 exports.getSingleTodo = async (req, res) => {
     try {
         const data = await Todo.find({ _id: req.params.id })
@@ -91,7 +94,7 @@ exports.getSingleTodo = async (req, res) => {
 //     })
 // }
 
-
+// update single todo 
 exports.updateSingleTodo = async (req, res) => {
     try {
         const data = await Todo.findByIdAndUpdate(
@@ -120,7 +123,7 @@ exports.updateSingleTodo = async (req, res) => {
     }
 }
 
-
+// delete single todo
 exports.deleteSingleTodo = async (req, res) => {
     try {
         const data = await Todo.deleteOne({ _id: req.params.id });

@@ -1,23 +1,25 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const dotenv = require('dotenv')
 const { config } = require('./config/config');
 const todoHandler = require('./routes/todoRoutes');
+const userHandler = require('./routes/userRoutes');
 
 
 // express app initialization
 const app = express();
+dotenv.config()
 app.use(express.json());
 
 
 const PORT = 5000;
 
 // database connection with mongoose
-
 config();
-
 
 // 
 app.use('/todo', todoHandler);
+app.use('/user', userHandler);
+
 
 // default error handler
 app.use((err, req, res, next) => {
