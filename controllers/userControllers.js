@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const userModel = require('../models/userModel');
 const bcrypt = require('bcrypt');
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const User = new mongoose.model('User', userModel);
 
 // Signup post
 exports.signUpPost = async (req, res) => {
     const signupUser = await User.find({ userName: req.body.userName });
-    console.log(signupUser);
+
     if (signupUser.length === 0) {
         try {
             const hashPassword = await bcrypt.hash(req.body.password, 10);

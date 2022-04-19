@@ -42,6 +42,8 @@ exports.allTodoPost = async (req, res) => {
 
 // get all todo 
 exports.getAllTodo = (req, res) => {
+    console.log(req.userName)
+    console.log(req.userId)
     Todo.find({ status: 'active' }, (err, data) => {
         if (err) {
             res.status(500).json({

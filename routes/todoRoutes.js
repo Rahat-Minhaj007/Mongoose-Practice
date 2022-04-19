@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const { singleTodoPost, allTodoPost, updateSingleTodo, getAllTodo, getSingleTodo, deleteSingleTodo } = require('../controllers/todoControllers');
 const router = express.Router();
 
-const todoModel = require('../models/todoModel');
-const Todo = new mongoose.model('Todo', todoModel);
+const authGuard = require('../middleWares/checkLogin');
+
 
 
 // get all todo 
-router.get('/', getAllTodo);
+router.get('/', authGuard, getAllTodo);
 
 // get single todo 
 router.get('/:id', getSingleTodo)
