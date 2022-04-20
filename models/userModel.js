@@ -22,6 +22,12 @@ const userModel = mongoose.Schema({
         type: String,
         enum: ['admin', 'user']
     },
+    todos: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: "Todo"
+        }
+    ]
 
 })
 

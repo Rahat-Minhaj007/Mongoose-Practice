@@ -14,7 +14,7 @@ router.get('/', authGuard, getAllTodo);
 router.get('/:id', getSingleTodo)
 
 // post todo 
-router.post('/', singleTodoPost)
+router.post('/', authGuard, singleTodoPost)
 
 // post multiple  todo 
 router.post('/all', allTodoPost)

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const userModel = require('../models/userModel');
+const User = new mongoose.model('User', userModel);
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = new mongoose.model('User', userModel);
 
 // Signup post
 exports.signUpPost = async (req, res) => {

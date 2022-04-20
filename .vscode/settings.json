@@ -1,0 +1,73 @@
+{
+    // Linting Setup
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": false,
+        "source.organizeImports": true
+    },
+    "editor.formatOnSave": false,
+    "eslint.alwaysShowStatus": true,
+    "editor.cursorWidth": 2,
+
+    // editor
+    "editor.fontLigatures": true,
+    "editor.wordWrap": "on",
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "comment",
+                "settings": {
+                    "fontStyle": "",
+                    "foreground": "#909090"
+                }
+            }
+        ]
+    },
+
+    // cursor
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorBlinking": "expand",
+    "emmet.excludeLanguages": ["markdown"],
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "editor.minimap.enabled": false,
+    "diffEditor.wordWrap": "off",
+    "editor.linkedEditing": true,
+    "prettier.semi": true,
+    "editor.suggestSelection": "first",
+    "prettier.arrowParens": "avoid",
+    "editor.tabSize": 2,
+    "explorer.compactFolders": false,
+    "window.zoomLevel": 1,
+    "files.associations": {
+        "*.js": "javascript"
+    },
+    "javascript.preferences.quoteStyle": "double",
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "editor.renderWhitespace": "all",
+    "editor.autoClosingBrackets": "always",
+    "tabnine.experimentalAutoImports": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "npm-intellisense.packageSubfoldersIntellisense": true,
+    "npm-intellisense.showBuildInLibs": true,
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#93e6fc",
+        "activityBar.activeBorder": "#fa45d4",
+        "activityBar.background": "#93e6fc",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#fa45d4",
+        "activityBarBadge.foreground": "#15202b",
+        "sash.hoverBorder": "#93e6fc",
+        "statusBar.background": "#61dafb",
+        "statusBar.foreground": "#15202b",
+        "statusBarItem.hoverBackground": "#2fcefa",
+        "statusBarItem.remoteBackground": "#61dafb",
+        "statusBarItem.remoteForeground": "#15202b",
+        "titleBar.activeBackground": "#61dafb",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveBackground": "#61dafb99",
+        "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#61dafb"
+}

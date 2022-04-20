@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const userModel = require('../models/userModel');
+const User = new mongoose.model('User', userModel);
 const todoModel = require('../models/todoModel');
 const Todo = new mongoose.model('Todo', todoModel);
 
@@ -6,8 +8,19 @@ const Todo = new mongoose.model('Todo', todoModel);
 exports.singleTodoPost = async (req, res) => {
 
     try {
-        const newTodo = new Todo(req.body);
+        const newTodo = new Todo({
+            ...req.body,
+            user: req.userId
+        });
         const data = await newTodo.save();
+        await User.updateOne(
+            { _id: req.userId },
+            {
+                $push: {
+                    todos: data._id
+                }
+            }
+        )
         if (data) {
             res.status(200).json({
                 message: "Todo Was Inserted successfully"
@@ -42,22 +55,22 @@ exports.allTodoPost = async (req, res) => {
 
 // get all todo 
 exports.getAllTodo = (req, res) => {
-    console.log(req.userName)
-    console.log(req.userId)
-    Todo.find({ status: 'active' }, (err, data) => {
-        if (err) {
-            res.status(500).json({
-                message: "500 server side error"
-            })
+    Todo.find({})
+        .populate("user", "name userName email")
+        .exec((err, data) => {
+            if (err) {
+                res.status(500).json({
+                    message: "500 server side error"
+                })
 
-        } else {
-            res.status(200).json({
-                result: data,
-                message: "Success"
-            })
-        }
+            } else {
+                res.status(200).json({
+                    result: data,
+                    message: "Success"
+                })
+            }
 
-    })
+        })
 
 }
 
